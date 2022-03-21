@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -9,29 +9,142 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <link rel="stylesheet" href="style.css">
+    <title>SpotiApp</title>
+    <link rel="icon" href="./images/spoty-icon-head.svg" type="image/x-icon"/>
   </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  <body class="app">
+    <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
+    <!-- <div id="root"></div> -->
+    <header class="header">
+      <nav class="button_container">
+        <button class="button-nav">
+         <img src="./images/button-back.png" alt="Кнопка Назад" title="Назад" width="30" height="30"/>
+        </button>
+        <button class="button-nav"> 
+          <img src="./images/button-forward.png" alt="Кнопка Вперед" title="Вперед" width="30" height="30"/>
+        </button>
+      </nav>
+      <div class="d7">
+        <form>
+          <input type="text" placeholder="Искать здесь...">
+          <button type="submit"></button>
+        </form>
+        </div>
+    </header>
+    <aside class="aside">
+      <article class="container-title">
+        <img src="./images/spoti-icon-head-98.svg" alt="Иконка SpotiApp" width="50" height="50"/>
+        <h1>SpotiApp</h1>
+      </article>
+      <ul class="tags">
+        <!-- Ссылка из этого списка кликабельная только одна - "Главная"
+        Остальные сделала для полноты/красоты и, чтобы доделать самой функционал
+        после окончания курса. -->
+        <li class="tag-container" tabindex="0">
+          <img src="./images/aside-home.png" width="25" height="25">
+          <a href="/" class="link">Главная</a>
+        </li>
+        <li class="tag-container" tabindex="0">
+          <img src="./images/aside-search.png" width="25" height="25">
+            <a href="/" class="link">Поиск</a>
+        </li>
+        <li class="tag-container" tabindex="0">
+          <img src="./images/aside-media.png" width="25" height="25">
+          <a href="/" class="link">Моя медиатека</a>
+        </li>
+      </ul>
+      <ul class="cookie">
+        <li tabindex="0">
+          <a href="https://www.spotify.com/ru-ru/legal/cookies-policy/" class="link-cookie" target="_blank">Файлы cookie</a>
+        </li>
+        <li tabindex="0">
+          <a href="https://www.spotify.com/ru-ru/legal/privacy-policy/" class="link-cookie" target="_blank">Конфиденциальность</a>
+        </li>
+        <li tabindex="0">
+          <a href="https://support.spotify.com/ru-ru/contact-spotify-legal-form/" class="link-cookie" target="_blank">Форма для ваших обращений</a>
+        </li>
+      </ul>
+    </aside>
+    <main class="content">
+      <h2>Новые Релизы</h2>
+      <ul class="content-releases">
+        <li class="releases-container">
+          <img src="./images/Running up the hill.png" width="150" height="150"/>
+          <span class="name-track">Running up That Hill</span>
+          <span class="name-artist">Dayne S</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Под луной.png" width="150" height="150"/>
+          <span class="name-track">Под луной</span>
+          <span class="name-artist">МУККА</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Мир.png" width="150" height="150"/>
+          <span class="name-track">МИР</span>
+          <span class="name-artist">blago white</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Bones.png" width="150" height="150"/>
+          <span class="name-track">Bones</span>
+          <span class="name-artist">Imagine Dragons</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Яд.png" width="150" height="150"/>
+          <span class="name-track">ЯД</span>
+          <span class="name-artist">алёна швец.</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Гуляка.png" width="150" height="150"/>
+          <span class="name-track">Гуляка</span>
+          <span class="name-artist">Алексей Воробьёв</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Новые Тату.png" width="150" height="150"/> 
+          <span class="name-track">Новые тату</span>
+          <span class="name-artist">Читмил</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Eyes dont lie.png" width="150" height="150"/>
+          <span class="name-track">Eyes Don’t Lie</span>
+          <span class="name-artist">Tones And I</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/The Root.png" width="150" height="150"/>
+          <span class="name-track">The Roots</span>
+          <span class="name-artist">Syntronix</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Infinity.png" width="150" height="150"/>
+          <span class="name-track">Infinity</span>
+          <span class="name-artist">ONEIL, TITOV, Dcoverz</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Glass.png" width="150" height="150"/>
+          <span class="name-track">Glass</span>
+          <span class="name-artist">Lisa Morgenstern</span>
+        </li>
+        <li class="releases-container">
+          <img src="./images/Мягкость.png" width="150" height="150"/>
+          <span class="name-track">мягкость</span>
+          <span class="name-artist">BERG</span>
+        </li>
+      </ul>
+    </main>
+    <footer class="footer">
+      <section class="footer-container">
+        <img src="./images/Running up the hill.png" width="55" height="55"/>
+        <div class="track-container">
+          <span class="name-track">Running up That Hill</span>
+          <span class="name-artist">Dayne S</span>
+        </div>
+      </section>
+      <!-- Плеер будет переделан, пока не знаю, как его сделать. Очень хочу подключить Api,
+      но если не успею в рамках курса, то либо доделаю после, либо вставлю иконки -->
+      <audio class="audio" controls="controls">
+        <source src="" type="audio/wav">
+        <source src="./audio for example/Running Up That Hill.mp3" type="audio/mpeg">
+      </audio>
+    </footer>
   </body>
 </html>
