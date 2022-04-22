@@ -37,6 +37,7 @@
 .content {
     grid-area: content;
     background-color: RGB(32, 32, 32);
+    overflow: auto;
 }
 
 .footer {
@@ -54,15 +55,9 @@
     grid-auto-columns: minmax(190px, auto);
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     grid-gap: 10px;
-    overflow: auto;
-    height: 520px;
+    height: 70%;
     padding-right: 10px;
 }
-
-/* Не нашла информации о том, как сделать невидимый scroll без вендорных префиксов  */
-.content-releases::-webkit-scrollbar {
-    width: 0;
-  }
 
 .releases-container {
     width: auto;
@@ -76,7 +71,6 @@
     transition-duration: 0.5s;
     transition-timing-function: ease;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
     justify-content: center;
     text-align-last: auto;
     gap: 10px;
