@@ -161,6 +161,9 @@
 .name-track {
     color:#E0E0E0;
     font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .name-artist {
@@ -209,12 +212,27 @@
 }
 
 .button-nav {
+    display: none;
+}
+
+/* Стили карточки */
+.content-releases-card {
+    display: none;
+}
+
+.releases-container-card {
+    display: none;
+}
+
+.button-nav-card {
     border-radius: 16px;
     border: 0px;
     background-color: #737272;
 }
 
-/* Стили карточки */
+.title_content_card {
+    display: none;
+}
 
 .content-card {
     display: flex;
@@ -287,6 +305,9 @@
 .name-track-content {
     color:#E0E0E0;
     font-size: 65px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .name-artist-content {
@@ -298,3 +319,16 @@
     color:#8c8a8a;
     font-size: 12px;
 }
+
+.header_card {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #737272;
+    height: 70px;
+}
+
+.input_search_card {
+    display: none;
+  }
