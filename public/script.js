@@ -113,7 +113,7 @@ function setCards(data) {
 // Запрос на получение альбома по id.
 async function getAlbum(id) {
   const token = await getToken();
-  fetch(`https://api.spotifs.com/v1/albums/${id}`, {
+  fetch(`https://api.spotify.com/v1/albums/${id}`, {
   method: 'GET',
   headers: { 'Authorization': 'Bearer ' + token}
   })
@@ -132,7 +132,7 @@ async function getAlbum(id) {
 async function createCard(data) {
   if (data) {
     const li = document.querySelectorAll('.releases-container');
-    header.classList = 'header_card';
+    header.classList = 'header_card';//////////////////////////////////////////////////////////////////////////
     inputSearch.classList = 'input_search_card';
     buttonBack.classList = 'button-nav-card';
     title.classList = 'title_content_card';

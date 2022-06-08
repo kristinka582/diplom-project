@@ -10,77 +10,10 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="stylesheet" href="style.css">
     <title>SpotiApp</title>
     <link rel="icon" href="./images/spoty-icon-head.svg" type="image/x-icon"/>
   </head>
-  <body class="app">
-    <header class="header">
-      <nav class="button_container">
-        <button class="button-nav">
-          <img src="./images/button-back.png" alt="Кнопка Назад" title="Назад" width="30" height="30"/>
-        </button>
-      </nav>
-      <div class="search">
-        <!-- Поиск будет осуществляться с помощью Api Spotify -->
-        <form action="URL" class="form_search">
-          <input class="input_search" type="text" placeholder="Искать здесь..." id="input_search">
-        </form>
-        </div>
-    </header>
-    <aside class="aside">
-      <article class="container-title">
-        <img src="./images/spoti-icon-head-98.svg" alt="Иконка SpotiApp" width="50" height="50"/>
-        <h1 class="title_aside">SpotiApp</h1>
-      </article>
-      <ul class="tags">
-        <!-- Ссылка из этого списка кликабельная только одна - "Главная"
-        Остальные сделала для полноты/красоты и, чтобы доделать самой функционал
-        после окончания курса. -->
-        <li class="tag-container">
-          <img src="./images/aside-home.png" width="25" height="25">
-          <a href="./index.html" class="link">Главная</a>
-        </li>
-        <li class="tag-container">
-          <img src="./images/aside-search.png" width="25" height="25">
-            <a id="search" class="link">Поиск</a>
-        </li>
-        <li class="tag-container">
-          <img src="./images/aside-media.png" width="25" height="25">
-          <a href="./index.html" class="link">Моя медиатека</a>
-        </li>
-      </ul>
-      <ul class="cookie">
-        <li tabindex="0">
-          <a href="https://www.spotify.com/ru-ru/legal/cookies-policy/" class="link-cookie" target="_blank">Файлы cookie</a>
-        </li>
-        <li tabindex="0">
-          <a href="https://www.spotify.com/ru-ru/legal/privacy-policy/" class="link-cookie" target="_blank">Конфиденциальность</a>
-        </li>
-        <li tabindex="0">
-          <a href="https://support.spotify.com/ru-ru/contact-spotify-legal-form/" class="link-cookie" target="_blank">Форма для ваших обращений</a>
-        </li>
-      </ul>
-    </aside>
-    <main class="content">
-      <h2 class="title_content">Новые Релизы</h2>
-      <ul class="content-releases"></ul>
-    </main>
-    <footer class="footer">
-      <section class="footer-container">
-        <img src="" class="player_img" width="55" height="55"/>
-        <div class="track-container">
-          <span class="name-track name-footer"></span>
-          <span class="name-artist artist-footer"></span>
-        </div>
-      </section>
-      <!-- Плеер будет переделан, пока не знаю, как его сделать. Очень хочу подключить Api,
-      но если не успею в рамках курса, то либо доделаю после, либо вставлю иконки -->
-      <audio class="audio" controls="controls">
-        <source src="" type="audio/wav">
-        <source src="./audio for example/Running_Up_That_Hill.mp3" type="audio/mpeg">
-      </audio>
-    </footer>
-    <script src="script.js"></script>
+  <body>
+    <div id="root"></div>
   </body>
 </html>
