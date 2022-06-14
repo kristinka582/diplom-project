@@ -1,54 +1,63 @@
-import React, { useEffect, useState } from 'react';
+/**
+ * Компонент Content. Отображает реестр карточек треков.
+ */
+
+import React from 'react';
 import SpotifyApi from './Api';
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom";
+import {useQuery} from 'react-query';
 
-
-export default function Content(props) {
-
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+/**
+ * Реализует хук useQuery, используется для работы с api.
+ * @returns возвращает нужное api.
+ */
+export function getApi() {
+    const [searchParams] = useSearchParams();
+    const searchResult = searchParams.get('search');
+    let albumId = '';
+    if (window.location.pathname.includes('id')) {
+        albumId = window.location.pathname.slice(4);
+    }
     let api = new SpotifyApi();
 
-    useEffect(async () => {
-        // Получение токена.
+    let {error, isLoaded, data } = useQuery(['new-releases', 'search', 'album', searchResult, albumId], async () => {
         let token = await api.getToken();
-        let tempData = null;
-        if (token) {
-            if (props.searchValue) {
-                // Если есть searchValue, то передаем данные в апи поиска.
-                tempData = await api.getSearch(props.searchValue, token);
-            } else {
-                // Иначе используем апи получения новых релизов.
-                tempData = await api.getNewReleases(token)
-            }
-            setIsLoaded(true);
-            props.setItems(tempData);
+        if (searchResult) {
+            return await api.getSearch(searchResult, token);
+        } else if (albumId) {
+            return await api.getAlbum(albumId, token);
         } else {
-            setIsLoaded(true);
-            setError(error);
+            return await api.getNewReleases12(token);
         }
-    }, [props.searchValue])
+    });
+    return {error, isLoaded, data };
+}
 
-    // Обработка события onClick.
-    function onClickItem(id) {
-        // Передача props.
-        props.onClickCallback(id);
-        props.onClickCall("header_card");
-    }
+/**
+ * Компонент Content.
+ * @returns возвращает верстку компонента.
+ */
+export default function Content() {
+
+    let {error, isLoaded, data } = getApi();
 
     if (error) {
         return <div>Ошибка: {error.message}</div>;
-    } else if (!isLoaded) {
+    } else if (isLoaded) {
         return <div className="content">Загрузка...</div>;
     } else {
+            let items = [];
+            if (data) {
+                items = data;
+            }
             return (
                     <main className="content">
                         <h2 className="title_content">Новые Релизы</h2>
                         <ul className="content-releases">
                             {/* Формирование карточек новых релизов. */}
-                            {props.items.map(
+                            {items.map(
                                 (item) => (
-                                    <Link to="/ContentCard" key={item.id} onClick={() => onClickItem(item.id)} className="link_li">
+                                    <Link to={`id=${item.id}`} key={item.id} className="link_li">
                                         <li className="releases-container" >
                                             <img src={item.images[1].url} alt="releases_image" width="150" height="150" />
                                             <span className="name-track">{item.name}</span>

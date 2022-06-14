@@ -1,32 +1,49 @@
+/**
+ * Файл компонента Header. Отображает строку поиска или кнопку "Назад".
+ */
+
 import React from 'react';
-import { Link } from "react-router-dom"
-// import { getToPathname } from 'react-router/lib/router';
+import { useSearchParams, useNavigate } from "react-router-dom"
 
-export default function Header(props) {
+export default function Header() {
 
-    console.log(props);
-    
-    if (props.headerVisibility !== "header_card") {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+
+    /**
+     * Функция, обрабатывающая изменения поля поиска.
+     * @param {object} event 
+     */
+    function onSearch(event) {
+        console.log(event);
+        event.preventDefault();
+        let keyword;
+        if (event.target.value) {
+            keyword = {search: event.target.value}
+        } else {
+            keyword = undefined;
+        }
+        setSearchParams(keyword, { replace: true });
+    }
+
+    if (window.location.pathname.includes('id')) {
         return (
-            <header className="header">
-                <div className="search">
-                    {/* Поиск будет осуществляться с помощью Api Spotify */}
-                    <form action="URL" className="form_search">
-                        <input className="input_search"  value={props.searchValue} onChange={(e) => props.onSearchCallback(e.target.value)} type="text" placeholder="Искать здесь..." id="input_search"/>
-                    </form>
-                </div>
+            <header className="header_card">
+                <nav className="button_container">
+                    <button onClick={() => navigate(-1)} className="button-nav-card">
+                        <img src="./images/button-back.png" alt="Кнопка Назад" title="Назад" width="30" height="30"/>
+                    </button>
+                </nav>
             </header>
         )
     } else {
         return (
-            <header className="header_card">
-                <nav className="button_container">
-                    <button className="button-nav-card">
-                        <Link to='/' className="link_li" >
-                            <img src="./images/button-back.png" alt="Кнопка Назад" title="Назад" width="30" height="30"/>
-                        </Link>
-                    </button>
-                </nav>
+            <header className="header">
+                <div className="search">
+                    <form action="URL" className="form_search">
+                        <input className="input_search" onChange={(e) => onSearch(e)} type="text" placeholder="Искать здесь..." id="input_search"/>
+                    </form>
+                </div>
             </header>
         )
     }
