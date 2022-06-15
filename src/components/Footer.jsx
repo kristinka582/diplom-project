@@ -3,12 +3,14 @@
  */
 
 import React from 'react';
-import { getApi } from './Content';
+import useGetApi from './useGetApi.js';
+import { useLocation } from "react-router-dom";
 
 
 export default function Footer() {
 
-    let {error, isLoaded, data } = getApi();
+    let {error, isLoaded, data } = useGetApi();
+    let location = useLocation();
 
     if (error) {
         return <div>Ошибка: {error.message}</div>;
@@ -17,19 +19,23 @@ export default function Footer() {
     } else {
         let item = null;
         let nameTrack, imageTrack, nameArtist = '';
-        if (window.location.pathname.includes('id')) {
+        if (location.pathname.includes('id')) {
             if (data) {
-                item = data;
+                item = data[0];
                 nameTrack = item.name;
-                imageTrack = item.images[2].url;
-                nameArtist = item.artists[0].name;
+                if (item.images && item.artists) {
+                    imageTrack = item.images[2].url;
+                    nameArtist = item.artists[0].name;
+                }
             }
         } else {
             if (data) {
                 item = data[0];
-                nameTrack = item.name;
-                imageTrack = item.images[2].url;
-                nameArtist = item.artists[0].name;
+                if (item) {
+                    nameTrack = item.name;
+                    imageTrack = item.images[2].url;
+                    nameArtist = item.artists[0].name;
+                }
             }
         }
         return (

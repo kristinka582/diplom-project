@@ -3,9 +3,7 @@
  */
 
 import React from 'react';
-import { useParams } from "react-router-dom"
-import {useQuery} from 'react-query';
-import SpotifyApi from './Api';
+import useGetApi from './useGetApi.js';
 
 
 /**
@@ -14,15 +12,7 @@ import SpotifyApi from './Api';
  */
 export default function ContentCard() {
 
-    const params = useParams();
-    let albumId = params.id.slice(3);
-    let api = new SpotifyApi();
-
-    let {error, isLoaded, data } = useQuery(['new-releases', 'album', albumId], async () => {
-        let token = await api.getToken();
-        return [await api.getAlbum(albumId, token), await api.getNewReleases5(token)];
-    });
-
+    let {error, isLoaded, data } = useGetApi();
 
     if (error) {
         return <div>Ошибка: {error.message}</div>;

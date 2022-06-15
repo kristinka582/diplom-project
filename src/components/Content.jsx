@@ -3,35 +3,9 @@
  */
 
 import React from 'react';
-import SpotifyApi from './Api';
-import { Link, useSearchParams } from "react-router-dom";
-import {useQuery} from 'react-query';
+import useGetApi from './useGetApi.js';
+import { Link } from "react-router-dom";
 
-/**
- * Реализует хук useQuery, используется для работы с api.
- * @returns возвращает нужное api.
- */
-export function getApi() {
-    const [searchParams] = useSearchParams();
-    const searchResult = searchParams.get('search');
-    let albumId = '';
-    if (window.location.pathname.includes('id')) {
-        albumId = window.location.pathname.slice(4);
-    }
-    let api = new SpotifyApi();
-
-    let {error, isLoaded, data } = useQuery(['new-releases', 'search', 'album', searchResult, albumId], async () => {
-        let token = await api.getToken();
-        if (searchResult) {
-            return await api.getSearch(searchResult, token);
-        } else if (albumId) {
-            return await api.getAlbum(albumId, token);
-        } else {
-            return await api.getNewReleases12(token);
-        }
-    });
-    return {error, isLoaded, data };
-}
 
 /**
  * Компонент Content.
@@ -39,7 +13,7 @@ export function getApi() {
  */
 export default function Content() {
 
-    let {error, isLoaded, data } = getApi();
+    let {error, isLoaded, data } = useGetApi();
 
     if (error) {
         return <div>Ошибка: {error.message}</div>;

@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { useSearchParams, useNavigate } from "react-router-dom"
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom"
 
 export default function Header() {
 
@@ -15,7 +15,6 @@ export default function Header() {
      * @param {object} event 
      */
     function onSearch(event) {
-        console.log(event);
         event.preventDefault();
         let keyword;
         if (event.target.value) {
@@ -26,7 +25,9 @@ export default function Header() {
         setSearchParams(keyword, { replace: true });
     }
 
-    if (window.location.pathname.includes('id')) {
+    let location = useLocation();
+
+    if (location.pathname.includes('id')) {
         return (
             <header className="header_card">
                 <nav className="button_container">
