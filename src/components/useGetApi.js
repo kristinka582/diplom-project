@@ -1,3 +1,7 @@
+/**
+ * Файл пользовательского хука useGetApi. Управляет состояниями статуса, получает апи и возвращает их, когда это требуется.
+ */
+
 import { useRef, useState, useEffect } from 'react';
 import SpotifyApi from './Api';
 import { useSearchParams, useLocation } from "react-router-dom";
